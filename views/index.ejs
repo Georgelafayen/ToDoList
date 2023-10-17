@@ -1,0 +1,32 @@
+<%- include("partials/header.ejs") %>
+
+  <!-- Title Box Header -->
+  <div class="box" id="heading">
+    <h1>
+      <%= new Date().getDate() %>
+        <%= new Date().toLocaleString('default', {month: 'long' }); %>, <%= new Date().getFullYear(); %>
+    </h1>
+  </div>
+
+  <!-- Tasks Box -->
+  <div class="box" id="taskBox">
+
+    <% today.forEach(function(tasks){ %>
+    <form action ="/deleteToday" method = "post">
+      <div class="item">
+        <input type="checkbox" name="checkbox" value="<%=tasks._id%>" onChange="this.form.submit()">
+        <p> <%= tasks.task %> </p>
+      </div>
+    </form>
+    <% }); %>
+
+
+        <!-- Submit button -->
+        <form class="item" action="/submitTask" method="post">
+          <input type="text" name="todayTask" placeholder="Add a task" required>
+          <button type="submit">+</button>
+        </form>
+  </div>
+
+
+<%- include("partials/footer.ejs") %>
